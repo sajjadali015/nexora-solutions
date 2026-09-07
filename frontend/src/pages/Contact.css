@@ -1,0 +1,304 @@
+.contact-page-root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0 6rem 0;
+}
+
+.contact-bounds {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.contact-grid-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 1.2fr;
+  gap: clamp(2.5rem, 4vw, 4.5rem);
+  align-items: flex-start;
+}
+
+/* --- Left Column: Info & Cards --- */
+.contact-info-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-pill-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-accent);
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+  width: fit-content;
+}
+
+.contact-main-h1 {
+  font-size: clamp(2.2rem, 4.2vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.18;
+  color: var(--text-main);
+  margin-bottom: 1.25rem;
+}
+
+.contact-lead-desc {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+}
+
+/* Contact Info Cards Grid */
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.contact-card-link {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.contact-card-link:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-card-link.full-span {
+  grid-column: 1 / -1;
+}
+
+.card-icon-frame {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
+}
+
+.card-text-body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-label {
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-bottom: 0.2rem;
+}
+
+.card-data-val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* --- Right Column: Premium Discovery Form Card --- */
+.contact-form-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header-block {
+  margin-bottom: 2rem;
+}
+
+.form-title-h2 {
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.form-sub-p {
+  font-size: 0.925rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.contact-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.form-grid-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+}
+
+.form-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.form-input-group label .req-star {
+  color: #ef4444;
+}
+
+.form-control-input,
+.form-control-select,
+.form-control-textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  font-size: 0.925rem;
+  color: var(--text-main);
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control-input::placeholder,
+.form-control-textarea::placeholder {
+  color: var(--text-dim);
+}
+
+.form-control-input:focus,
+.form-control-select:focus,
+.form-control-textarea:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.form-control-select {
+  cursor: pointer;
+  appearance: auto;
+}
+
+.form-control-textarea {
+  min-height: 125px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.input-error-tip {
+  font-size: 0.75rem;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.btn-form-submit {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  padding: 0.9rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, filter 0.15s ease;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.btn-form-submit:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Success Card Banner */
+.form-success-banner {
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.success-check-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--brand-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem auto;
+}
+
+.success-h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.success-lead-p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .contact-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-card-link.full-span {
+    grid-column: auto;
+  }
+  .form-grid-pair {
+    grid-template-columns: 1fr;
+  }
+}

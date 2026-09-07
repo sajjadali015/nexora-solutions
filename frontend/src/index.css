@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+/* --- DARK THEME (Dewi / Append Premium Obsidian) --- */
+:root, [data-theme="dark"] {
+  --bg-base: #060912;
+  --bg-surface: #0c1222;
+  --bg-card: #121b30;
+  --bg-card-hover: #182440;
+  --bg-glass: rgba(12, 18, 34, 0.85);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(59, 130, 246, 0.45);
+
+  --brand-primary: #3b82f6;
+  --brand-accent: #06b6d4;
+  --brand-emerald: #10b981;
+  --brand-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+
+  --badge-bg: rgba(59, 130, 246, 0.12);
+  --badge-text: #60a5fa;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 36px -8px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 35px -10px rgba(59, 130, 246, 0.4);
+}
+
+/* --- LIGHT THEME (Arsha Crisp Corporate Slate) --- */
+[data-theme="light"] {
+  --bg-base: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-glass: rgba(255, 255, 255, 0.9);
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+
+  --border-subtle: #e2e8f0;
+  --border-card: #cbd5e1;
+  --border-hover: #2563eb;
+
+  --brand-primary: #2563eb;
+  --brand-accent: #0284c7;
+  --brand-emerald: #059669;
+  --brand-gradient: linear-gradient(135deg, #2563eb 0%, #0284c7 100%);
+
+  --badge-bg: #eff6ff;
+  --badge-text: #1d4ed8;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+/* Ensure smooth scrolling across the entire document */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset all target section IDs by the sticky navbar height (74px + breathing room) */
+section[id],
+div[id] {
+  scroll-margin-top: 82px;
+}

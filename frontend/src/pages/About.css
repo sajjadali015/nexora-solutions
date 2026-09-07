@@ -1,0 +1,272 @@
+.about-root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.about-bounds {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.about-section {
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+  width: 100%;
+}
+
+.about-section.tinted {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-head-center {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto clamp(2.5rem, 4.5vw, 3.5rem) auto;
+}
+
+.about-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--badge-text);
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+}
+
+.about-h2 {
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.85rem;
+}
+
+.about-sub {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* --- Hero Banner --- */
+.about-hero-section {
+  padding: clamp(4rem, 7vw, 6rem) 0 clamp(2.5rem, 4vw, 3.5rem) 0;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.about-hero-h1 {
+  font-size: clamp(2.35rem, 4.8vw, 3.65rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--text-main);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-hero-p {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* --- Mission & Vision --- */
+.mv-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.mv-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  padding: clamp(2rem, 3.5vw, 2.75rem);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.mv-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background-color: var(--badge-bg);
+  color: var(--brand-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border-subtle);
+}
+
+.mv-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.mv-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* --- Principles Grid --- */
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.principle-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 10px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--brand-accent);
+  margin-bottom: 0.65rem;
+  display: block;
+}
+
+.principle-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.principle-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* --- Team Roster --- */
+.team-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.75rem;
+}
+
+.team-member-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.team-member-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+}
+
+.member-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-sm);
+}
+
+.member-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.member-role {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand-primary);
+  margin-bottom: 0.85rem;
+  display: block;
+}
+
+.member-bio {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* --- About CTA --- */
+.about-cta-banner {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 16px;
+  padding: clamp(3rem, 5vw, 4.5rem) 2rem;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: var(--shadow-lg);
+}
+
+.about-cta-banner h2 {
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 0.85rem;
+  color: #ffffff;
+}
+
+.about-cta-banner p {
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.65;
+}
+
+.btn-about-cta {
+  background-color: #ffffff;
+  color: #0f172a;
+  padding: 0.85rem 1.85rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-block;
+  transition: background-color 0.15s ease;
+}
+
+.btn-about-cta:hover {
+  background-color: #f1f5f9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mv-dual-grid {
+    grid-template-columns: 1fr;
+  }
+}
