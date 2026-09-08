@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import API_BASE_URL from '../config/api';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -13,11 +14,14 @@ export default function Contact() {
 
   const [formErrors, setFormErrors] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     if (formErrors[name]) setFormErrors(prev => ({ ...prev, [name]: null }));
+    if (serverError) setServerError('');
   };
 
   const validateForm = () => {
@@ -26,18 +30,61 @@ export default function Contact() {
     if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = 'A valid business email address is required.';
     }
-    if (!formData.message.trim()) errors.message = 'Please provide brief details about your project scope.';
+    if (!formData.message.trim()) {
+      errors.message = 'Please provide brief details about your project scope.';
+    } else if (formData.message.trim().length < 10) {
+      errors.message = 'Message must be at least 10 characters long.';
+    }
     return errors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
     }
-    setIsSuccess(true);
+
+    setIsSubmitting(true);
+    setServerError('');
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit inquiry.');
+      }
+
+      setIsSuccess(true);
+    } catch (err) {
+      console.error('Contact submission error:', err);
+      setServerError(err.message || 'Unable to connect to server. Please verify backend is active.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      service: 'Web Application Development',
+      message: ''
+    });
+    setFormErrors({});
+    setServerError('');
+    setIsSuccess(false);
   };
 
   return (
@@ -186,6 +233,20 @@ export default function Contact() {
                   <p className="form-sub-p">Fill out the fields below to schedule an initial technical scoping call.</p>
                 </div>
 
+                {serverError && (
+                  <div style={{
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    background: 'rgba(239, 68, 68, 0.1)',
+                    border: '1px solid rgba(239, 68, 68, 0.3)',
+                    color: '#ef4444',
+                    fontSize: '0.875rem',
+                    marginBottom: '1rem'
+                  }}>
+                    {serverError}
+                  </div>
+                )}
+
                 <form className="contact-form-body" onSubmit={handleSubmit} noValidate>
                   
                   <div className="form-grid-pair">
@@ -198,6 +259,7 @@ export default function Contact() {
                         onChange={handleInputChange} 
                         placeholder="e.g. Alex Morgan"
                         className="form-control-input"
+                        disabled={isSubmitting}
                       />
                       {formErrors.name && <span className="input-error-tip">{formErrors.name}</span>}
                     </div>
@@ -211,6 +273,7 @@ export default function Contact() {
                         onChange={handleInputChange} 
                         placeholder="alex@company.com"
                         className="form-control-input"
+                        disabled={isSubmitting}
                       />
                       {formErrors.email && <span className="input-error-tip">{formErrors.email}</span>}
                     </div>
@@ -226,6 +289,7 @@ export default function Contact() {
                         onChange={handleInputChange} 
                         placeholder="+1 (555) 000-0000"
                         className="form-control-input"
+                        disabled={isSubmitting}
                       />
                     </div>
 
@@ -238,6 +302,7 @@ export default function Contact() {
                         onChange={handleInputChange} 
                         placeholder="e.g. Acme Innovations"
                         className="form-control-input"
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
@@ -247,8 +312,9 @@ export default function Contact() {
                     <select 
                       name="service" 
                       value={formData.service} 
-                      onChange={handleInputChange}
+                      onChange={handleInputChange} 
                       className="form-control-select"
+                      disabled={isSubmitting}
                     >
                       <option value="Web Application Development">Web Application Development</option>
                       <option value="Mobile App Development">Mobile App Development</option>
@@ -268,12 +334,18 @@ export default function Contact() {
                       onChange={handleInputChange} 
                       placeholder="Tell us about your project, timeline, constraints, and objectives..."
                       className="form-control-textarea"
+                      disabled={isSubmitting}
                     />
                     {formErrors.message && <span className="input-error-tip">{formErrors.message}</span>}
                   </div>
 
-                  <button type="submit" className="btn-form-submit">
-                    <span>Send Message</span>
+                  <button 
+                    type="submit" 
+                    className="btn-form-submit"
+                    disabled={isSubmitting}
+                    style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}
+                  >
+                    <span>{isSubmitting ? 'Submitting...' : 'Send Message'}</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="22" x2="11" y1="2" y2="13"/>
                       <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -294,7 +366,7 @@ export default function Contact() {
                   Our engineering team has received your project inquiry. We will review your specifications and reach out to <strong>{formData.email}</strong> within 24 hours.
                 </p>
                 <button 
-                  onClick={() => setIsSuccess(false)}
+                  onClick={handleReset}
                   className="btn-form-submit"
                   style={{ margin: '0 auto' }}
                 >

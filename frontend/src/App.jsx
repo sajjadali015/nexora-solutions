@@ -12,12 +12,15 @@ import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 
 export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
         <Routes>
+          {/* Public Layout Wrapping Main Site Pages */}
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
@@ -27,6 +30,13 @@ export default function App() {
             <Route path="careers" element={<Careers />} />
             <Route path="contact" element={<Contact />} />
             <Route path="login" element={<Login />} />
+
+            {/* Admin Management Routes */}
+            <Route path="admin" element={<AdminLogin />} />
+            <Route path="admin/login" element={<AdminLogin />} />
+            <Route path="admin/dashboard" element={<AdminDashboard />} />
+
+            {/* Catch-all 404 Route */}
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
