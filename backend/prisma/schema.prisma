@@ -1,0 +1,43 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 1. Client Contact Inquiries
+model ContactInquiry {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  company   String?
+  service   String
+  message   String
+  status    String   @default("UNREAD")
+  createdAt DateTime @default(now())
+}
+
+// 2. Career & Job Applications
+model JobApplication {
+  id             String   @id @default(uuid())
+  jobTitle       String
+  applicantName  String
+  applicantEmail String
+  applicantPhone String
+  resumeUrl      String?
+  status         String   @default("PENDING")
+  createdAt      DateTime @default(now())
+}
+
+// 3. Administrative Staff Users
+model StaffUser {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+}
