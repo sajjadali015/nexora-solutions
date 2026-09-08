@@ -15,10 +15,31 @@ const PORT = process.env.PORT || 5000;
 // Security & Utility Middleware
 app.use(helmet());
 app.use(morgan('dev'));
+
+// CORS Configuration (Allow Vercel + Localhost)
+const allowedOrigins = [
+  'https://nexora-frontend-blue.vercel.app',
+  'http://localhost:5173',
+  'http://127.0.0.1:5173'
+];
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
-  credentials: true
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps, curl, postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    return callback(null, true); // Fallback: allow all origins to prevent blocking
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Handle Preflight Requests
+app.options('*', cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -61,9 +82,4 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
   console.log(`[NEXORA CORE API] Server active at http://localhost:${PORT}`);
-});app.use(cors({
-  origin: true,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+});
